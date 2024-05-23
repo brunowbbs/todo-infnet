@@ -1,0 +1,50 @@
+.container_app {
+  display: flex;
+  height: 100vh;
+}
+
+.container_app .container_form {
+  background: #450b53;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_app .container_form form {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+}
+
+.container_app .container_form form h2 {
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.container_app .container_form form input,
+select {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 0;
+  border-bottom: 1px solid #450b53;
+  outline: none;
+  height: 35px;
+}
+
+.container_app .container_form form button {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: #450b53;
+  color: #fff;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.container_app .list {
+}

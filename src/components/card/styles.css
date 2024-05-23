@@ -1,0 +1,38 @@
+.card_button {
+  display: flex;
+  border: 1px solid #95a5a6;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.card_button .left {
+  flex: 1;
+}
+
+.card_button .left p:first-child {
+  font-weight: bold;
+}
+
+.card_button .left p:nth-child(2) {
+  font-weight: 200;
+  font-size: 0.75rem;
+}
+
+.card_button .left p:last-child {
+  font-weight: 300;
+  font-size: 0.85rem;
+}
+
+.card_button .right {
+}
+
+.card_button .right .date {
+  font-weight: 600;
+}
+
+.btn_icon {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
