@@ -4,12 +4,24 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 export default function Card(props) {
-  const { tarefa } = props;
+  const { tarefa, index, tarefas, setTarefas } = props;
 
-  // tarefa.titulo
-  // tarefa.categoria
-  // tarefa.data
-  // tarefa.descricao
+  function removerTarefa() {
+    const tarefasFiltradas = tarefas.filter(
+      (tarefa, indexTarefa) => indexTarefa !== index
+    );
+
+    localStorage.setItem("@tarefas", JSON.stringify(tarefasFiltradas));
+
+    setTarefas(tarefasFiltradas);
+  }
+
+  function formatarData(data) {
+    const newData = new Date(data);
+
+    const dataFormatada = new Intl.DateTimeFormat("pt-br").format(newData);
+    return dataFormatada;
+  }
 
   return (
     <div className="card_button">
@@ -22,12 +34,12 @@ export default function Card(props) {
       </div>
 
       <div className="right">
-        <p className="date"> {tarefa.data}</p>
+        <p className="date"> {formatarData(tarefa.data)}</p>
         <div>
           <button className="btn_icon" onClick={() => alert("Editar")}>
             <FaEdit color="#0FBA3F" size={20} />
           </button>
-          <button className="btn_icon" onClick={() => alert("Apagar")}>
+          <button className="btn_icon" onClick={removerTarefa}>
             <MdDelete color="#F90000" size={20} />
           </button>
         </div>

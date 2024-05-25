@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "./components/card";
 import "./styles.css";
+
+//local storage
+
+// PROPS, STATES, SIDE EFFECTS
 
 export default function App() {
   const [titulo, setTitulo] = useState("");
@@ -9,6 +13,17 @@ export default function App() {
   const [descricao, setDescricao] = useState("");
 
   const [tarefas, setTarefas] = useState([]);
+
+  useEffect(() => {
+    getTarefasLocalStorage();
+  }, []);
+
+  function getTarefasLocalStorage() {
+    const tarefasLocalStorageString = localStorage.getItem("@tarefas");
+
+    const tarefasRecuperadas = JSON.parse(tarefasLocalStorageString);
+    setTarefas([...tarefasRecuperadas]);
+  }
 
   function salvarTarefa(event) {
     event.preventDefault();
@@ -21,6 +36,10 @@ export default function App() {
     };
 
     setTarefas([...tarefas, novaTarefa]);
+
+    const tarefasString = JSON.stringify([...tarefas, novaTarefa]);
+
+    localStorage.setItem("@tarefas", tarefasString);
 
     setTitulo("");
     setCategoria("");
@@ -67,10 +86,30 @@ export default function App() {
       </div>
 
       <div style={{ flex: 1, padding: 10 }}>
-        <h1 style={{ fontSize: "1rem" }}>Minhas Tarefas</h1>
+        <div
+          style={{
+            flexDirection: "row",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <h1 style={{ fontSize: "1rem" }}>Minhas Tarefas</h1>
+          <span>
+            Total: {tarefas.length}{" "}
+            {tarefas?.length === 1 ? "tarefa" : "tarefas"}
+          </span>
+        </div>
 
-        {tarefas.map((tarefa) => (
-          <Card tarefa={tarefa} />
+        {tarefas.length === 0 ? <p>Nenhuma tarefa cadastrada</p> : null}
+
+        {tarefas.map((tarefa, index) => (
+          <Card
+            key={index}
+            tarefa={tarefa}
+            index={index}
+            tarefas={tarefas}
+            setTarefas={setTarefas}
+          />
         ))}
       </div>
     </div>
