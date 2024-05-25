@@ -21,8 +21,10 @@ export default function App() {
   function getTarefasLocalStorage() {
     const tarefasLocalStorageString = localStorage.getItem("@tarefas");
 
-    const tarefasRecuperadas = JSON.parse(tarefasLocalStorageString);
-    setTarefas([...tarefasRecuperadas]);
+    if (tarefasLocalStorageString) {
+      const tarefasRecuperadas = JSON.parse(tarefasLocalStorageString);
+      setTarefas([...tarefasRecuperadas]);
+    }
   }
 
   function salvarTarefa(event) {
